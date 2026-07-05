@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0e1119">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Lightning">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAADr0lEQVR4nO3dwW3cMBCF4ecUYMDHnIMUl4pSXJBecmCQGIIeV6JIiZz5vwp0+DEza2uxb+8fXwXs+fL0A2BexAGLOGARByzigEUcsIgDFnHAIg5YxAGLOGARByzigEUcsIgDFnHAIg5YxAGLOGARByzigEUcsIgDFnHAIg5YxAGLOGARx61+/fz29COcQBz3WasMEcdtShnff/x++kFOII47LDczCuIYbtEyRByjfS5jrZ0i4hhq3ZlREAcs4hhlMzaW2ykijkFWXygFcfQXowwRR3dhyhBx9OXKWPHgEHF0FGlmFMTRR7wyRBxd1MtYdKeIOK4LOTMK4rgkcBkijiuOlLHuThFxoII4GsVeKAVxtDhYxtI7RcTRIMPMKIjjnDxliDhOOVXG6jtFxHFcqplREMchCcsQcRzRUEaAnSLieCnnzCiIoyZzGSKOiuYyYuwUEQcqiGNf8oVSEMcOyiiIY+tiGWEODhHHBjPjM+L4jzI2iOOvLmVE2ikijoKZsYs4KMPKHkfHMoLtFElv7x9fn36Gx8SbGX0DzTs5KOOlvHEEM2KpJY0j2NgYdO5kjCNYGeOkiyNeGeM+JeWKgzJOSRQHZZyVJQ7KaJAiDspoEz8OymgWPA7KuCJyHPHKuFnYOEKWcfM/fsPGEc/9rwTEjCPe2HjkZZGAcVBGL9HioIyOQsVBGX3FiYMyugsSR7wyZpD6BeNmN7T4+NhQmMkRzAxliDgajB4bk5Qh4pjNPGWIOKYyVRkijnnMVoaI46xBB8eEZYg4UEEcz5tzbIg4HjdtGSKOU7ofHDOXIeJ40ORliDieMn8ZIo5HLFGGiOO4XgfHKmWIOFBBHLdaaGyIOO60VhkijtssV4aI46Ccv7NBHMMtWoaIY7R1yxBxDLV0GSKOI9J+KYY4Rll9bIg4BglQhohjhBhliDheOntwhClDxNFXpDJEHB0FK0PE0Uu8MkQcdWn/wlEQRwchx4aI47qoZYg4LgpchojjithliDgq6tdo+DJEHG0ylCHiaJCkDBEHKohjnzs48owNEccpqcoQcRyXrQwRx0EJyxBx7NocHDnLEHG8lLYMEUdd5jJEHKggjq1/B0fysSHicChDxLGLMgp+xgsWkwMWccAiDljEAYs4YBEHLOKARRywiAMWccAiDljEAYs4YBEHLOKARRywiAMWccAiDljEAYs4YBEHLOKARRywiAMWccAiDljEAYs4YBEHLOKARRywiAMWccAiDljEAYs4YBEHrD/8G9zH5DIUuAAAAABJRU5ErkJggg==">
+
+<title>Lightning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0e1119;--panel:#161b27;--panel2:#1d2433;--line:#2a3243;--ivory:#ece6d8;--muted:#8a93a8;--faint:#5d667b;
+    --brass:#e9a83c;--brass2:#ffcf6b;--brass-soft:rgba(233,168,60,.14);--brass-line:rgba(233,168,60,.42);
+    --teal:#5cae9e;--teal-soft:rgba(92,174,158,.16);--rose:#e0716b;--violet:#9b8cff;--violet-soft:rgba(155,140,255,.13);
+    --disp:'Fraunces',Georgia,serif;--body:'IBM Plex Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+    --safe-b:env(safe-area-inset-bottom,0px);--safe-t:env(safe-area-inset-top,0px);}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;}
+  html,body{margin:0;padding:0;height:100%;overflow:hidden;}
+  body{background:var(--ink);color:var(--ivory);font-family:var(--body);-webkit-font-smoothing:antialiased;}
+  #app{height:100%;max-width:560px;margin:0 auto;display:flex;flex-direction:column;padding:calc(10px + var(--safe-t)) 16px calc(10px + var(--safe-b));}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums;}
+  .top{display:flex;align-items:center;gap:9px;padding:4px 2px 8px;flex:none;}
+  .top .bolt{width:15px;height:18px;}.top b{font-family:var(--disp);font-weight:700;font-size:17px;}
+  .pill{font-family:var(--mono);font-size:11px;font-weight:600;padding:4px 9px;border-radius:99px;border:1px solid var(--brass-line);color:var(--brass);background:var(--brass-soft);}
+  .pill.lvl{margin-left:auto;}.pill.learn{color:var(--violet);border-color:var(--violet);background:var(--violet-soft);}
+  .dots{display:flex;gap:5px;justify-content:center;padding:2px 0 8px;flex:none;flex-wrap:wrap;}
+  .dots i{width:6px;height:6px;border-radius:99px;background:var(--panel2);border:1px solid var(--line);}
+  .dots i.done{background:var(--teal);border-color:var(--teal);}.dots i.cur{background:var(--brass);border-color:var(--brass);}
+  .stage{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;}
+  .num{font-family:var(--mono);font-weight:600;font-size:min(13vw,52px);text-align:center;letter-spacing:.04em;line-height:1.1;}
+  .num .d{opacity:.4;transition:opacity .12s,color .12s;}
+  .num .d.cur{opacity:1;color:var(--brass);}.num .d.nbr{opacity:1;color:var(--teal);}
+  .num .x{color:var(--muted);opacity:.6;margin:0 .1em;}
+  .steplabel{text-align:center;margin-top:14px;font-size:15px;color:var(--ivory);min-height:1.4em;line-height:1.5;}
+  .steplabel .cur{color:var(--brass);font-family:var(--mono);font-weight:600;}.steplabel .nbr{color:var(--teal);font-family:var(--mono);font-weight:600;}
+  .correct{text-align:center;margin-top:8px;font-family:var(--mono);font-size:13px;color:var(--rose);min-height:1.2em;}
+  .slots{display:flex;gap:6px;justify-content:center;margin:16px 0 4px;flex-wrap:wrap;}
+  .slot{width:42px;height:54px;border-radius:10px;background:var(--panel);border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:27px;font-weight:600;transition:.12s;}
+  .slot.active{border-color:var(--brass);background:var(--brass-soft);}.slot.filled{border-color:var(--teal);color:var(--ivory);}
+  .hint{text-align:center;font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;}
+  .hintline{text-align:center;color:var(--faint);font-size:12.5px;margin-top:12px;min-height:1em;}
+  .result{text-align:center;}
+  .result .verdict{font-family:var(--disp);font-weight:600;font-size:32px;}
+  .result .verdict.ok{color:var(--teal);}.result .verdict.no{color:var(--rose);}.result .verdict.slip{color:var(--ivory);}
+  .pr{display:inline-block;margin-top:6px;font-family:var(--mono);font-weight:700;color:var(--brass2);font-size:14px;}
+  .bigtime{font-family:var(--mono);font-weight:700;font-size:44px;margin-top:14px;line-height:1;}
+  .split{font-family:var(--mono);font-size:12.5px;color:var(--faint);margin-top:8px;}.split b{color:var(--muted);}
+  .gateline{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:10px;}
+  .ca{font-family:var(--mono);font-size:15px;color:var(--rose);margin-top:10px;}
+  .subtle{font-family:var(--mono);font-size:12px;color:var(--faint);margin-top:10px;}
+  .foot{flex:none;padding-top:10px;}
+  .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:linear-gradient(180deg,var(--brass2),var(--brass));color:#23170a;font-weight:600;padding:16px;border-radius:13px;font-size:16px;border:none;font-family:var(--body);cursor:pointer;}
+  .btn:active{filter:brightness(.96);transform:translateY(1px);}
+  .btn.ghost{background:var(--panel2);color:var(--muted);border:1px solid var(--line);font-weight:500;font-size:13px;padding:10px;margin-top:9px;}
+  .pad{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;}
+  .key{height:56px;border-radius:13px;background:var(--panel);border:1px solid var(--line);color:var(--ivory);font-family:var(--mono);font-size:24px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .key:active{background:var(--panel2);transform:translateY(1px);}.key.fn{font-size:15px;color:var(--muted);font-family:var(--body);}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;}
+  .card h1{font-family:var(--disp);font-weight:600;font-size:24px;margin:0 0 8px;letter-spacing:-.01em;}.card h1.big{font-size:27px;}
+  .card p{color:var(--muted);font-size:14px;line-height:1.6;margin:0 0 12px;}.card p b{color:var(--ivory);}
+  .plan{display:flex;flex-direction:column;gap:7px;margin:8px 0 4px;}
+  .prow{display:flex;justify-content:space-between;font-family:var(--mono);font-size:13px;background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:9px 12px;}
+  .prow .r{color:var(--brass);}.prow .k{color:var(--faint);font-size:11px;}
+  .statline{display:flex;gap:9px;margin:14px 0;}
+  .statline .s{flex:1;text-align:center;background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:11px 4px;}
+  .statline .s b{font-family:var(--mono);font-size:20px;display:block;}.statline .s span{font-size:10.5px;color:var(--muted);}
+  .err{color:var(--rose);font-family:var(--mono);font-size:13px;text-align:center;}
+  .env{margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--faint);line-height:1.7;word-break:break-all;border-top:1px solid var(--line);padding-top:12px;}
+  .env b{color:var(--teal);}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>/* LIGHTNING BUNDLE — generated; do not edit by hand. Same source as the Node-verified modules. */
+(function(root){
+  var __modules = {}, __cache = {};
+  function __define(name, factory){ __modules[name] = factory; }
+  function require(path){
+    var name = path.replace(/^\.\//,'').replace(/\.js$/,'');
+    if(__cache[name]) return __cache[name].exports;
+    var module = { exports: {} };
+    __cache[name] = module;
+    __modules[name](module, module.exports, require);
+    return module.exports;
+  }
+
+__define("engine_core", function(module, exports, require){
+// Lightning adaptive engine v3 — practice + review + MAINTENANCE (speed-endgame). Pure, testable.
+"use strict";
+function carriesFor(n){const s=String(n);let c=0;for(let i=0;i<s.length-1;i++){if((+s[i])+(+s[i+1])>=10)c++;}return c;}
+function median(a){if(!a.length)return null;const s=[...a].sort((x,y)=>x-y);const m=s.length>>1;return s.length%2?s[m]:(s[m-1]+s[m])/2;}
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+const PROFILE={base:3.0,digitCost:1.3,perCarry:5.0,entryPerDigit:0.28,entryBase:0.4,practiceGate:0.6};
+function predOrdinaryThink(p,d,c){return p.base+p.digitCost*d+p.perCarry*c;}
+function predEntry(p,ad){return Math.max(0.5,p.entryBase+p.entryPerDigit*ad);}
+const DEFAULTS={practiceReps:5,gradLevel:5,growthFast:1.9,sessionFloor:8,sessionCap:16,maintDrop:1,reviewGate:0.85};
+const LEVELS=[{digits:2,maxC:0},{digits:2,maxC:9},{digits:3,maxC:1},{digits:3,maxC:9},{digits:4,maxC:1},{digits:4,maxC:9},{digits:5,maxC:2},{digits:5,maxC:9},{digits:6,maxC:3},{digits:6,maxC:9}];
+function capAt(l){const L=LEVELS[Math.min(l,LEVELS.length-1)];return L.maxC>=L.digits-1?L.digits-1:L.maxC;}
+function maintLevel(cfg){return Math.max(0,cfg.gradLevel-cfg.maintDrop);}
+function genProblem(mult,level,rng){const L=LEVELS[Math.min(level,LEVELS.length-1)],lo=Math.pow(10,L.digits-1),hi=Math.pow(10,L.digits)-1,cap=capAt(level);
+  let n=null,c=0;for(let i=0;i<400;i++){const cand=lo+Math.floor(rng()*(hi-lo+1)),cc=carriesFor(cand);
+    if(L.maxC>=L.digits-1){if(cc>=1||L.digits===1){n=cand;c=cc;break;}}else if(cc<=L.maxC){n=cand;c=cc;break;}}
+  if(n===null){n=lo;c=carriesFor(lo);}const ans=n*mult,ad=String(ans).length;
+  return {mult,n,ans,digits:L.digits,carries:c,ansDigits:ad,cap,level};}
+function gateForKind(p,kind,cfg){const f=kind==='practice'?PROFILE.practiceGate:cfg.reviewGate;
+  return +(f*(predOrdinaryThink(PROFILE,p.digits,p.carries)+predEntry(PROFILE,p.ansDigits))).toFixed(2);}
+function fluentFloor(level){const L=LEVELS[Math.min(level,LEVELS.length-1)];const avgC=L.maxC>=L.digits-1?Math.round((L.digits-1)/2):Math.min(L.maxC,1);
+  return 0.45*L.digits+0.3*avgC+0.6+predEntry(PROFILE,L.digits+1);}
+function mkProb(kind,skill,level,rng,cfg){const p=genProblem(skill.mult,level,rng);return {kind,skillId:skill.id,...p,gate:gateForKind(p,kind,cfg)};}
+
+function newSkill(id,day){return {id,mult:+id.slice(1),phase:'learning',introDay:day,stability:0.6,due:1e9,level:0,reps:0,lapses:0,recent:[],best:null,lastPR:false};}
+function gradeOf(ok,t,g){return !ok?0:(t<=g?2:1);}
+function bumpStability(s,day,g,cfg){const prev=Math.max(0.5,s.stability),el=s.due>1e8?prev:Math.max(0,day-(s.due-prev)),ov=Math.max(1,el/prev),sp=Math.min(1.6,1+0.25*(ov-1));
+  if(g===0)s.stability=Math.max(0.5,s.stability*0.4);else if(g===1)s.stability=s.stability*1.4*sp;else s.stability=s.stability*cfg.growthFast*sp;
+  s.stability=Math.min(s.stability,120);}
+function recall(s,day){const prev=Math.max(0.5,s.stability),el=day-(s.due-prev);return Math.pow(0.5,el/prev);}
+function updateLevel(s,t,ok,g){s.recent.push({t,ok,lvl:s.level});if(s.recent.length>5)s.recent.shift();
+  const at=s.recent.filter(r=>r.lvl===s.level),lap=at.filter(r=>!r.ok).length;
+  if(lap>=2&&s.level>0){s.level--;s.recent=[];return;}
+  const oks=at.filter(r=>r.ok).map(r=>r.t);
+  if(oks.length>=3&&lap===0&&median(oks)<=g*0.85&&s.level<LEVELS.length-1){s.level++;s.recent=[];}}
+function applyResult(st,day,id,t,ok,gateSec,cfg,kind){const s=st.skills[id];if(!s)return;cfg=cfg||DEFAULTS;const gr=gradeOf(ok,t,gateSec);
+  updateLevel(s,t,ok,gateSec);s.reps++;if(gr===0)s.lapses++;s.lastPR=false;
+  if(s.phase==='learning'){ if(s.level>=cfg.gradLevel){s.phase='review';s.stability=1;s.due=day+1;s.best=null;} }
+  else{ if(ok&&(s.best==null||t<s.best)){s.best=+t.toFixed(2);s.lastPR=true;} bumpStability(s,day,gr,cfg);s.due=day+s.stability; }}
+
+function buildSession(st,day,rng,cfg){cfg=cfg||DEFAULTS;st.introducedToday=null;const out=[];
+  let learning=Object.values(st.skills).find(s=>s.phase==='learning');
+  if(!learning){const nid=st.queueOrder.find(id=>!st.skills[id]);if(nid){st.skills[nid]=newSkill(nid,day);learning=st.skills[nid];st.introducedToday=nid;}}
+  if(learning)for(let i=0;i<cfg.practiceReps;i++)out.push(mkProb('practice',learning,learning.level,rng,cfg));
+  const ml=maintLevel(cfg);
+  let due=Object.values(st.skills).filter(s=>s.phase==='review'&&s.due<=day+0.001).sort((a,b)=>(a.due-b.due)||(b.lapses-a.lapses));
+  const per={};
+  for(const s of due){if(out.length>=cfg.sessionCap)break;out.push(mkProb('review',s,Math.min(s.level,ml),rng,cfg));per[s.id]=1;}
+  // MAINTENANCE floor-fill: speed drills chasing PRs on graduated skills (speed-endgame)
+  const reviewSkills=Object.values(st.skills).filter(s=>s.phase==='review');
+  if(reviewSkills.length){
+    while(out.length<cfg.sessionFloor&&out.length<cfg.sessionCap){
+      const list=reviewSkills.filter(s=>(per[s.id]||0)<2)
+        .map(s=>({s,gap:(s.best!=null?s.best:999)-fluentFloor(Math.min(s.level,ml))})).sort((a,b)=>b.gap-a.gap);
+      if(!list.length)break;const s=list[0].s;out.push(mkProb('speed',s,Math.min(s.level,ml),rng,cfg));per[s.id]=(per[s.id]||0)+1;
+    }}
+  return out.slice(0,cfg.sessionCap);}
+
+module.exports={PROFILE,DEFAULTS,LEVELS,carriesFor,capAt,maintLevel,fluentFloor,predOrdinaryThink,predEntry,
+  genProblem,gateForKind,mkProb,newSkill,gradeOf,bumpStability,recall,updateLevel,applyResult,buildSession,median,mulberry32};
+
+// ============================ SIMULATION ============================
+if(require.main===module){
+  const RULES=[11,12,2,6,5,7,9,8,4,3];const cfg=DEFAULTS;
+  function fresh(){return {skills:{},queueOrder:RULES.map(r=>'m'+r),introducedToday:null};}
+  function methodTime(s,p,extraFast){const f=Math.min(1,s._fluency||0);const ord=predOrdinaryThink(PROFILE,p.digits,p.carries);
+    const flu=(0.45*p.digits+0.3*p.carries+0.6)*(extraFast||1);return ord*(1-f)+flu*f+predEntry(PROFILE,p.ansDigits);}
+  function run(strugglerRule){
+    const st=fresh();const rng=mulberry32(42);const log={sizes:[],maintViol:0,capViol:0,prByDay:{},reviewGateLoose:0};
+    for(let day=0;day<90;day++){
+      const sess=buildSession(st,day,rng,cfg);log.sizes.push({day,n:sess.length});
+      for(const p of sess){const s=st.skills[p.skillId];const lr=(p.skillId==='m'+strugglerRule)?0.012:0.11;
+        s._fluency=Math.min(1,(s._fluency||0)+lr);
+        // simulate continued speed improvement in maintenance (gets a touch faster each PR attempt)
+        const extra=(p.kind==='speed'||p.kind==='review')?Math.max(0.55,1-0.01*(s._mreps||0)):1;
+        if(p.kind==='speed'||p.kind==='review')s._mreps=(s._mreps||0)+1;
+        const t=methodTime(s,p,extra);const ok=(p.skillId==='m'+strugglerRule)?(rng()>0.45):true;
+        if((p.kind==='review'||p.kind==='speed')&&p.level>maintLevel(cfg))log.maintViol++;
+        if(p.carries>p.cap)log.capViol++;
+        applyResult(st,day,p.skillId,t,ok,p.gate,cfg,p.kind);}
+      // record a PR snapshot for m7
+      if(st.skills['m7']&&st.skills['m7'].phase==='review')log.prByDay[day]=st.skills['m7'].best;
+    }
+    return {st,log};}
+  let fails=0;const A=(c,m)=>{if(!c){console.log('FAIL:',m);fails++;}};
+  // gate looseness
+  {const p={digits:4,carries:2,ansDigits:5};A(gateForKind(p,'review',cfg)>gateForKind(p,'practice',cfg),'review gate looser than practice');}
+  // REGRESSION (the empty-session bug): once curriculum is done, EVERY day must meet the floor
+  {const stR={skills:{},queueOrder:RULES.map(r=>'m'+r),introducedToday:null};const rngR=mulberry32(99);
+   let firstAllMastered=null,worstPost=99;
+   for(let d=0;d<90;d++){const ss=buildSession(stR,d,rngR,cfg);const g=Object.values(stR.skills).filter(s=>s.phase==='review').length;
+     if(g===10&&firstAllMastered===null)firstAllMastered=d;
+     if(firstAllMastered!==null)worstPost=Math.min(worstPost,ss.length);
+     for(const p of ss){const s=stR.skills[p.skillId];s._fluency=Math.min(1,(s._fluency||0)+0.11);
+       if(p.kind!=='practice')s._mreps=(s._mreps||0)+1;const t=methodTime(s,p);applyResult(stR,d,p.skillId,t,true,p.gate,cfg,p.kind);}}
+   A(firstAllMastered!==null,'curriculum completes within 90 days');
+   A(worstPost>=cfg.sessionFloor,'EVERY day after full mastery meets floor (day-56 bug cannot regress): worst='+worstPost);}
+
+  const {st,log}=run(3);
+  // ***THE REGRESSION TEST for the bug you found***: late-game sessions never collapse
+  const late=log.sizes.filter(x=>x.day>=60);
+  const minLate=Math.min(...late.map(x=>x.n));
+  A(minLate>=cfg.sessionFloor-0,'late sessions hit the floor (no 1-problem days): min '+minLate);
+  A(late.every(x=>x.n>=cfg.sessionFloor),'EVERY late session >= floor');
+  // maintenance below peak
+  A(log.maintViol===0,'maintenance never exceeded peak-1 level ('+log.maintViol+')');
+  A(log.capViol===0,'carry caps honored');
+  // PR improves over time (speed endgame): m7 best gets faster
+  const prs=Object.values(log.prByDay).filter(v=>v!=null);
+  A(prs.length>5 && prs[prs.length-1]<prs[0],'PR (best time) improved over maintenance: '+prs[0]+' -> '+prs[prs.length-1]);
+  // core behaviors still hold
+  A(st.skills['m11'].phase==='review'&&st.skills['m11'].stability>5,'m11 maintained, interval grew');
+  A(st.skills['m3'].phase==='learning'&&st.skills['m3'].reps>50,'struggler still resurfacing: '+st.skills['m3'].reps+' reps');
+  A(Object.keys(st.skills).length>=9,'curriculum progressed: '+Object.keys(st.skills).length+' skills');
+  const avg=log.sizes.reduce((a,b)=>a+b.n,0)/log.sizes.length;
+  A(avg>=cfg.practiceReps,'avg session healthy: '+avg.toFixed(1));
+
+  console.log('late-game session sizes (day60+): min='+minLate+' max='+Math.max(...late.map(x=>x.n)));
+  console.log('m7 PR: '+prs[0]+'s -> '+prs[prs.length-1]+'s  (speed endgame working)');
+  console.log('m11 stab='+st.skills['m11'].stability.toFixed(0)+'d  struggler m3 reps='+st.skills['m3'].reps);
+  console.log('avg session='+avg.toFixed(1)+' problems');
+  console.log(fails===0?'ENGINE v3 OK — maintenance fills sessions, speed-PRs improve, maint below peak, reviews looser, all prior behavior intact':(fails+' FAILURES'));
+  process.exit(fails?1:0);
+}
+
+});
+
+__define("lightning-engines", function(module, exports, require){
+/* =============================================================================
+   LIGHTNING — TRACHTENBERG MATH SUBSTRATE  (verified; solve-engine only, no UI)
+
+   Every rule is a genSteps function producing right-to-left steps, where each
+   step yields one output digit = (combination of operand digits) + carry-in,
+   mod 10, carry the rest. Two shapes:
+     • unary  — one operand, per-digit window (all single-digit multipliers)
+     • binary — two operands, column convolution (general two-finger method)
+   Both satisfy one contract, so the app's solve/score/schedule layers are
+   operand-agnostic. Rules are authentic Trachtenberg (verified vs the 1960
+   book's published rules; see traces in self-test). Add a rule = add a registry
+   entry; never an engine change.
+   ============================================================================= */
+
+/* ---- unary factory 1: LINEAR (no complement) — sum = kc*cur + kn*neighbour + carry ---- */
+function mkLinear(mult,kc,kn){return function(N){
+  const d=String(N).split('').map(Number),n=d.length,Nd=i=>(i>=0&&i<n)?d[n-1-i]:0;
+  const steps=[];let carry=0,j=0;
+  while(j<=n||carry>0){const cur=Nd(j),nb=Nd(j-1),sum=kc*cur+kn*nb+carry;
+    steps.push({fam:'lin',j,cur,nb,kc,kn,carryIn:carry,sum,digit:sum%10,carryOut:(sum/10)|0,curIdx:n-1-j,nbrIdx:n-j});
+    carry=(sum/10)|0;j++;}
+  const a=String(N*mult);while(steps.length>a.length&&steps[steps.length-1].digit===0)steps.pop();
+  return {ans:N*mult,ansStr:a,steps};};}
+
+/* ---- unary factory 2: HALF-neighbour — sum = k*cur + floor(nb/2) + (5 if cur odd) + carry ---- */
+function mkHalf(mult,k){return function(N){
+  const d=String(N).split('').map(Number),n=d.length,Nd=i=>(i>=0&&i<n)?d[n-1-i]:0;
+  const steps=[];let carry=0,j=0;
+  while(j<=n||carry>0){const cur=Nd(j),nb=Nd(j-1),half=(nb/2)|0,odd=(cur%2)?5:0,sum=k*cur+half+odd+carry;
+    steps.push({fam:'half',j,cur,nb,half,odd,k,carryIn:carry,sum,digit:sum%10,carryOut:(sum/10)|0,curIdx:n-1-j,nbrIdx:n-j});
+    carry=(sum/10)|0;j++;}
+  const a=String(N*mult);while(steps.length>a.length&&steps[steps.length-1].digit===0)steps.pop();
+  return {ans:N*mult,ansStr:a,steps};};}
+
+/* ---- unary factory 3: SUBTRACT-from-ten ----
+   units:  D*(10-cur) [+5 if half&odd]                       (units neighbour = trailing 0)
+   middle: D*(9-cur) + nbrTerm [+5 if half&odd] + carry      (nbrTerm = half? floor(nb/2) : nb)
+   lead:   nbrTerm(firstDigit) - L + carry
+   ×9(1,full,1)  ×8(2,full,2)  ×4(1,half,1)  ×3(2,half,2)  — the +5-for-odd rides with half-neighbour. */
+function mkSub(mult,D,H,L){const half=H==='half';return function(N){
+  const d=String(N).split('').map(Number),n=d.length,Nd=i=>(i>=0&&i<n)?d[n-1-i]:0;
+  const steps=[];let carry=0,j=0;
+  while(j<=n){const cur=Nd(j),nb=Nd(j-1),nbrTerm=half?((nb/2)|0):nb,odd=(half&&cur%2)?5:0;let sum;
+    if(j===0)      sum=D*(10-cur)+odd+carry;
+    else if(j===n) sum=nbrTerm-L+carry;
+    else           sum=D*(9-cur)+nbrTerm+odd+carry;
+    steps.push({fam:'sub',j,cur,nb,D,half,L,nbrTerm,odd,carryIn:carry,sum,
+      digit:((sum%10)+10)%10,carryOut:Math.floor(sum/10),pos:j===0?'units':j===n?'lead':'mid',curIdx:n-1-j,nbrIdx:n-j});
+    carry=Math.floor(sum/10);j++;}
+  const a=String(N*mult);while(steps.length>a.length&&steps[steps.length-1].digit===0)steps.pop();
+  return {ans:N*mult,ansStr:a,steps};};}
+
+/* ---- binary factory: GENERAL two-finger multiplication (column convolution) ----
+   column k = sum of a_i*b_j for i+j=k, + carry.  digit=sum%10, carry=floor(sum/10) (may be multi-digit). */
+function genStepsMul(A,B){
+  const da=String(A).split('').map(Number),db=String(B).split('').map(Number),na=da.length,nb=db.length;
+  const Ai=i=>da[na-1-i],Bj=j=>db[nb-1-j];
+  const steps=[];let carry=0,k=0;
+  while(k<na+nb||carry>0){const pairs=[];
+    for(let i=Math.max(0,k-(nb-1));i<=Math.min(na-1,k);i++){const j=k-i;pairs.push({i,j,ai:Ai(i),bj:Bj(j),prod:Ai(i)*Bj(j)});}
+    const colSum=pairs.reduce((s,p)=>s+p.prod,0),sum=colSum+carry;
+    steps.push({fam:'mul',col:k,pairs,colSum,carryIn:carry,sum,digit:sum%10,carryOut:Math.floor(sum/10),
+      aIdx:pairs.map(p=>na-1-p.i),bIdx:pairs.map(p=>nb-1-p.j)});
+    carry=Math.floor(sum/10);k++;}
+  const a=String(A*B);while(steps.length>a.length&&steps[steps.length-1].digit===0)steps.pop();
+  return {ans:A*B,ansStr:a,steps};}
+
+function carriesOf(gen){return function(){return gen.apply(null,arguments).steps.filter(s=>s.carryOut>0).length;};}
+
+/* ---- REGISTRY: math + shape metadata (labels/copy live in the app layer) ---- */
+const RULE_MATH={
+  m2 :{mult:2 ,shape:'unary' ,family:'linear'     ,genSteps:mkLinear(2,2,0)},
+  m11:{mult:11,shape:'unary' ,family:'linear'     ,genSteps:mkLinear(11,1,1)},
+  m12:{mult:12,shape:'unary' ,family:'linear'     ,genSteps:mkLinear(12,2,1)},
+  m5 :{mult:5 ,shape:'unary' ,family:'half'       ,genSteps:mkHalf(5,0)},
+  m6 :{mult:6 ,shape:'unary' ,family:'half'       ,genSteps:mkHalf(6,1)},
+  m7 :{mult:7 ,shape:'unary' ,family:'half'       ,genSteps:mkHalf(7,2)},
+  m9 :{mult:9 ,shape:'unary' ,family:'sub'        ,genSteps:mkSub(9,1,'full',1)},
+  m8 :{mult:8 ,shape:'unary' ,family:'sub'        ,genSteps:mkSub(8,2,'full',2)},
+  m4 :{mult:4 ,shape:'unary' ,family:'sub'        ,genSteps:mkSub(4,1,'half',1)},
+  m3 :{mult:3 ,shape:'unary' ,family:'sub'        ,genSteps:mkSub(3,2,'half',2)},
+  gen:{        shape:'binary',family:'convolution',genSteps:genStepsMul}
+};
+
+/* ---- self-test: proves every rule reconstructs its product; runs on load ---- */
+function selfTest(){
+  let fails=0;const bad=[];
+  for(const id in RULE_MATH){const r=RULE_MATH[id];if(r.shape!=='unary')continue;
+    for(let N=1;N<=99999;N++){const g=r.genSteps(N);
+      if(g.steps.map(s=>s.digit).join('')!==[...String(N*r.mult)].reverse().join('')){fails++;bad.push(id+':'+N);break;}}}
+  // binary: exhaustive small + sampled large
+  for(let x=1;x<=99;x++)for(let y=1;y<=99;y++){const g=genStepsMul(x,y);
+    if(g.steps.map(s=>s.digit).join('')!==[...String(x*y)].reverse().join('')){fails++;bad.push('gen:'+x+'x'+y);}}
+  for(let t=0;t<3000;t++){const x=1+((Math.random()*99999)|0),y=1+((Math.random()*99999)|0);const g=genStepsMul(x,y);
+    if(g.ans!==x*y||g.steps.map(s=>s.digit).join('')!==[...String(x*y)].reverse().join('')){fails++;bad.push('gen:'+x+'x'+y);}}
+  return {ok:fails===0,fails,bad:bad.slice(0,5)};
+}
+
+if(typeof module!=='undefined')module.exports={mkLinear,mkHalf,mkSub,genStepsMul,carriesOf,RULE_MATH,selfTest};
+
+});
+
+__define("lightning-store", function(module, exports, require){
+/* =============================================================================
+   LIGHTNING — PERSISTENCE LOGIC CORE  (storage-agnostic; verified in Node)
+
+   Design: store RAW timestamped attempts, derive everything on read. The only
+   things stored are facts that cannot be reconstructed later:
+     • sessionId  — a runtime fact (which sitting this was)
+     • origin     — INTENT (scheduler chose this as a cold-probe / review / ...)
+     • gate       — the target that was live at that instant
+     • ruleVersion, thinkMs/entryMs split, raw operands
+   Coldness, retention intervals, warm-vs-cold deltas, band difficulty — all
+   DERIVED here from (attempts + ts + sessionId), never stored.
+
+   Storage is behind an adapter (IndexedDB in browser; InMemory for tests). This
+   file is the adapter-agnostic logic; the risky part lives here and is testable.
+   ============================================================================= */
+
+const SESSION_GAP_MS = 30*60*1000;   // >30 min since last attempt => new session
+const COLD_K         = 3;            // first K same-rule solves in a session are "cold"
+
+/* ---- storage adapter: in-memory twin of the IndexedDB adapter (same interface) ---- */
+function InMemoryStore(){
+  const attempts=[], decisions=[]; let meta={lastTs:0,lastSessionId:0};
+  return {
+    async appendAttempt(a){attempts.push(a);return a;},
+    async allAttempts(){return attempts.slice();},
+    async attemptsByRule(rule){return attempts.filter(a=>a.rule===rule);},
+    async appendDecision(d){decisions.push(d);return d;},
+    async allDecisions(){return decisions.slice();},
+    async getMeta(){return {...meta};},
+    async setMeta(m){meta={...meta,...m};return meta;},
+    _dump(){return {attempts:attempts.slice(),decisions:decisions.slice(),meta:{...meta}};}
+  };
+}
+
+/* ---- session stamping: authoritative at write-time ---- */
+async function currentSessionId(store, now){
+  const m=await store.getMeta();
+  if(!m.lastTs || (now - m.lastTs) > SESSION_GAP_MS){
+    const sid=(m.lastSessionId||0)+1; await store.setMeta({lastSessionId:sid,lastTs:now}); return sid;
+  }
+  await store.setMeta({lastTs:now}); return m.lastSessionId;
+}
+
+/* ---- record one solve (append-only). Fills sessionId + ts; caller supplies the rest. ---- */
+async function recordAttempt(store, raw, now){
+  now = now ?? Date.now();
+  const sessionId = await currentSessionId(store, now);
+  const a = {
+    ts: now, sessionId,
+    rule: raw.rule, mode: raw.mode,                 // 'stepping' | 'free'
+    problem: raw.problem,                            // {n} or {a,b} — actual operands
+    carries: raw.carries ?? null, answerDigits: raw.answerDigits ?? null,
+    outcome: raw.outcome,                            // 'clean' | 'slip' | 'error'
+    totalMs: raw.totalMs ?? null, thinkMs: raw.thinkMs ?? null, entryMs: raw.entryMs ?? null,
+    gate: raw.gate ?? null, calibrating: !!raw.calibrating,
+    origin: raw.origin ?? 'free-explore',            // INTENT: practice|review|cold-probe|readiness-probe|user-override|free-explore
+    ruleVersion: raw.ruleVersion ?? 1,
+    stumbles: raw.stumbles ?? null, wrongValue: raw.wrongValue ?? null,
+    selfReport: raw.selfReport ?? null               // reserved: nullable 'easy'|'ok'|'hard'
+  };
+  return store.appendAttempt(a);
+}
+
+/* ---- DERIVE coldness: an attempt is cold if it's among the first COLD_K same-rule
+        completed solves within its session (stepping excluded; only free solves count). ---- */
+function annotateCold(attemptsForRule){
+  const perSession={};
+  return attemptsForRule
+    .filter(a=>a.mode==='free')
+    .slice().sort((x,y)=>x.ts-y.ts)
+    .map(a=>{const c=(perSession[a.sessionId]=(perSession[a.sessionId]||0)+1); return {...a, coldRank:c, wasCold:c<=COLD_K};});
+}
+
+function median(a){if(!a.length)return null;const s=[...a].sort((x,y)=>x-y);const m=s.length>>1;return s.length%2?s[m]:(s[m-1]+s[m])/2;}
+
+/* ---- threshold-FREE descriptive stats for a rule (the raw material the assessor reads).
+        No verdicts here — those live in classify(), parameterized, pinned separately. ---- */
+function ruleStats(allAttempts, rule, now){
+  now = now ?? Date.now();
+  const mine = annotateCold(allAttempts.filter(a=>a.rule===rule));
+  if(!mine.length) return {rule, seen:0, everFree:false};
+  const graded = mine.filter(a=>!a.calibrating);
+  const clean  = graded.filter(a=>a.outcome==='clean');
+  const cold   = clean.filter(a=>a.wasCold);
+  const warm   = clean.filter(a=>!a.wasCold);
+  const byBand={};
+  for(const a of clean){const b=a.answerDigits ?? '?'; (byBand[b]=byBand[b]||[]).push(a);}
+  const bandStats={};
+  for(const b in byBand){const g=byBand[b];
+    bandStats[b]={n:g.length, medTotal:median(g.map(a=>a.totalMs)), medThink:median(g.map(a=>a.thinkMs))};}
+  const lastTs = Math.max(...mine.map(a=>a.ts));
+  const sessions = new Set(mine.map(a=>a.sessionId)).size;
+  return {
+    rule, seen:mine.length, everFree:true, sessions,
+    graded:graded.length, clean:clean.length,
+    errorRate: graded.length? graded.filter(a=>a.outcome==='error').length/graded.length : null,
+    slipRate:  graded.length? graded.filter(a=>a.outcome==='slip').length/graded.length  : null,
+    coldN: cold.length, warmN: warm.length,
+    coldMedThink: median(cold.map(a=>a.thinkMs)),
+    warmMedThink: median(warm.map(a=>a.thinkMs)),
+    warmupDelta: (cold.length&&warm.length)? median(cold.map(a=>a.thinkMs))-median(warm.map(a=>a.thinkMs)) : null,
+    topBand: Math.max(...clean.map(a=>a.answerDigits||0), 0),
+    bandStats,
+    lastTs, elapsedMs: now-lastTs
+  };
+}
+
+/* ---- classify(): THRESHOLD-DEPENDENT verdict. Params are placeholders to be PINNED next;
+        exposed as an argument precisely so pinning them requires no code change here.
+        Kept intentionally thin — the real tuning happens when we wire engine_core + real data. ---- */
+const DEFAULT_PARAMS = {
+  fluentColdThinkMs: 6000,   // cold thinking at/under this at a real band => fluent-ish   (placeholder)
+  minColdSamples: 3,         // need this many cold clean solves to trust a fluency call
+  fluentMinBand: 3,          // fluency must be shown at >= this answer-digit band
+  maxErrorRate: 0.15,        // above this => not fluent
+  halfLifeMs: 3*24*3600*1000,// stability placeholder; real value comes from engine_core stability
+  rustyElapsedMult: 1.0      // elapsed > halfLife*this => 'rusty'/'due'
+};
+function classify(stats, params){
+  params = {...DEFAULT_PARAMS, ...(params||{})};
+  if(!stats.everFree) return {phase:'new'};
+  const due = stats.elapsedMs > params.halfLifeMs*params.rustyElapsedMult;
+  const fluent = stats.coldN>=params.minColdSamples
+      && stats.topBand>=params.fluentMinBand
+      && stats.coldMedThink!=null && stats.coldMedThink<=params.fluentColdThinkMs
+      && (stats.errorRate??1)<=params.maxErrorRate;
+  let phase;
+  if(fluent && due) phase='rusty';        // was fluent, now decayed => resurface
+  else if(fluent)   phase='fluent';
+  else              phase='learning';
+  return {phase, due, fluent, signals:{coldMedThink:stats.coldMedThink,topBand:stats.topBand,errorRate:stats.errorRate,elapsedMs:stats.elapsedMs}};
+}
+
+/* ---- rebuild guarantee: derived state is a pure function of the attempts log ---- */
+async function deriveAll(store, now, params){
+  const all = await store.allAttempts();
+  const rules=[...new Set(all.map(a=>a.rule))];
+  const out={};
+  for(const r of rules){const s=ruleStats(all,r,now); out[r]={stats:s, verdict:classify(s,params)};}
+  return out;
+}
+
+if(typeof module!=='undefined')module.exports={
+  InMemoryStore, recordAttempt, currentSessionId, annotateCold, ruleStats, classify, deriveAll,
+  SESSION_GAP_MS, COLD_K, DEFAULT_PARAMS
+};
+
+});
+
+__define("lightning-idb", function(module, exports, require){
+/* =============================================================================
+   LIGHTNING — INDEXEDDB STORAGE ADAPTER
+
+   Same seven methods as InMemoryStore (appendAttempt, allAttempts, attemptsByRule,
+   appendDecision, allDecisions, getMeta, setMeta) — a true drop-in. Everything
+   upstream (recordAttempt, ruleStats, retention, director) is unchanged; we swap
+   the plug, the appliance runs. Hand-rolled (no runtime dependency). Works in the
+   browser (real IndexedDB) and in Node (fake-indexeddb) via the same code path.
+   ============================================================================= */
+(function(root){
+  function getIDB(){
+    if(typeof indexedDB!=='undefined') return indexedDB;
+    if(typeof window!=='undefined' && window.indexedDB) return window.indexedDB;
+    if(typeof global!=='undefined' && global.indexedDB) return global.indexedDB;
+    throw new Error('IndexedDB unavailable (private mode or unsupported browser)');
+  }
+  const reqP = r => new Promise((res,rej)=>{ r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error); });
+  const txDone = t => new Promise((res,rej)=>{ t.oncomplete=()=>res(); t.onerror=()=>rej(t.error); t.onabort=()=>rej(t.error||new Error('tx aborted')); });
+
+  const DB_VERSION = 1;
+  function open(name){
+    return new Promise((resolve,reject)=>{
+      let req;
+      try{ req = getIDB().open(name, DB_VERSION); }catch(e){ return reject(e); }
+      req.onupgradeneeded = ()=>{ const db=req.result;              // migrations live here (versioned)
+        if(!db.objectStoreNames.contains('attempts')){
+          const s=db.createObjectStore('attempts',{keyPath:'id',autoIncrement:true});
+          s.createIndex('rule','rule'); s.createIndex('ts','ts'); s.createIndex('sessionId','sessionId');
+        }
+        if(!db.objectStoreNames.contains('decisions')) db.createObjectStore('decisions',{keyPath:'id',autoIncrement:true});
+        if(!db.objectStoreNames.contains('meta'))      db.createObjectStore('meta',{keyPath:'key'});
+      };
+      req.onsuccess = ()=>resolve(req.result);
+      req.onerror   = ()=>reject(req.error);
+      req.onblocked = ()=>reject(new Error('IndexedDB open blocked by another tab'));
+    });
+  }
+
+  async function IndexedDBStore(opts){
+    const name = (opts&&opts.name) || 'lightning';
+    const db = await open(name);
+
+    async function getMeta(){
+      const t=db.transaction('meta','readonly');
+      const row=await reqP(t.objectStore('meta').get('session'));
+      return row ? {lastTs:row.lastTs||0, lastSessionId:row.lastSessionId||0} : {lastTs:0, lastSessionId:0};
+    }
+    async function setMeta(m){
+      const cur=await getMeta();
+      const next={key:'session', ...cur, ...m};
+      const t=db.transaction('meta','readwrite');
+      t.objectStore('meta').put(next); await txDone(t);
+      return {lastTs:next.lastTs, lastSessionId:next.lastSessionId};
+    }
+    async function appendAttempt(a){
+      const t=db.transaction('attempts','readwrite');
+      const id=await reqP(t.objectStore('attempts').add(a)); await txDone(t);
+      return {...a, id};
+    }
+    async function allAttempts(){
+      const t=db.transaction('attempts','readonly');
+      const all=await reqP(t.objectStore('attempts').getAll());
+      return all.sort((x,y)=>x.ts-y.ts);
+    }
+    async function attemptsByRule(rule){
+      const t=db.transaction('attempts','readonly');
+      return reqP(t.objectStore('attempts').index('rule').getAll(rule));
+    }
+    async function appendDecision(d){
+      const t=db.transaction('decisions','readwrite');
+      const id=await reqP(t.objectStore('decisions').add(d)); await txDone(t);
+      return {...d, id};
+    }
+    async function allDecisions(){
+      const t=db.transaction('decisions','readonly');
+      return reqP(t.objectStore('decisions').getAll());
+    }
+    async function clearAll(){
+      const t=db.transaction(['attempts','decisions','meta'],'readwrite');
+      t.objectStore('attempts').clear(); t.objectStore('decisions').clear(); t.objectStore('meta').clear();
+      await txDone(t);
+    }
+    async function close(){ db.close(); }
+
+    return { appendAttempt, allAttempts, attemptsByRule, appendDecision, allDecisions, getMeta, setMeta, clearAll, close, _db:db };
+  }
+
+  const api = { IndexedDBStore };
+  if(typeof module!=='undefined' && module.exports) module.exports = api;
+  else root.LightningIDB = api;
+})(typeof self!=='undefined'?self:this);
+
+});
+
+__define("lightning-director", function(module, exports, require){
+/* =============================================================================
+   LIGHTNING — THE DIRECTOR  (active session composer; verified in Node)
+
+   Consumes per-rule states (from lightning-store deriveAll: {stats, verdict}) and
+   composes an ORDERED session queue. The app opens to this plan, not a menu.
+   Composition runs LIVE on conservative/principled logic; the consequential
+   VERDICTS it reads (fluent/rusty/due) may still be shadow-validated upstream —
+   the cold probes this director schedules are what generate that validation data.
+
+   Policy (principled thresholds; tunable):
+     • cold probes first (pre-warmup), due/rusty rules, most-overdue first
+     • frontier rule gets the bulk of practice
+     • fluent rules get interleaved review
+     • introduce next rule only when frontier is stable-enough-to-interleave AND
+       fewer than LEARN_CAP rules are being learned
+     • introduction order = researched difficulty sequence
+   ============================================================================= */
+
+const CURRICULUM = ['m11','m12','m5','m6','m7','m8','m9','m4','m3','m2','gen'];
+
+const DIR_PARAMS = {
+  sessionLen: 12,
+  learnCap: 2,          // max rules concurrently in 'learning'
+  maxColdProbes: 3,     // cap manufactured cold probes per session
+  readinessReps: 3,     // problems given to a newly-introduced rule
+  reviewRepsPerRule: 1, // spaced reps per fluent rule per session
+  // "stable enough to interleave" — the introduce gate (NOT full mastery)
+  interleaveMinClean: 6, interleaveMaxError: 0.20, interleaveMinBand: 2
+};
+
+function stableToInterleave(state, p){
+  const s=state&&state.stats; if(!s||!s.everFree) return false;
+  return s.clean>=p.interleaveMinClean && (s.errorRate??1)<=p.interleaveMaxError && s.topBand>=p.interleaveMinBand;
+}
+function bandFor(state, kind){
+  const top = (state&&state.stats&&state.stats.topBand) || 2;
+  if(kind==='cold-probe' && state.verdict && state.verdict.phase==='rusty') return Math.max(1, top-1); // resurface easier
+  if(kind==='readiness-probe') return 2;
+  return Math.max(2, top);
+}
+
+/* states: { ruleId: {stats, verdict} }  (verdict.phase ∈ new|learning|fluent|rusty ; verdict.due bool) */
+function planSession(states, params){
+  const p={...DIR_PARAMS, ...(params||{})};
+  states=states||{};
+  const introduced = CURRICULUM.filter(r=>states[r] && states[r].verdict && states[r].verdict.phase!=='new');
+  const learning   = introduced.filter(r=>states[r].verdict.phase==='learning');
+  const fluentRules= introduced.filter(r=>states[r].verdict.phase==='fluent' || states[r].verdict.phase==='rusty');
+  const dueRules   = introduced.filter(r=>states[r].verdict.due && states[r].verdict.phase!=='learning'); // frontier is served fresh; don't "cold-probe" a rule you're mid-learning
+
+  const queue=[];
+
+  // 1) COLD PROBES first — due/rusty rules, most-overdue first (manufactured cold exposure)
+  const coldOrder=[...dueRules].sort((a,b)=>(states[b].stats.elapsedMs||0)-(states[a].stats.elapsedMs||0)).slice(0,p.maxColdProbes);
+  for(const r of coldOrder) queue.push({rule:r, kind:'cold-probe', cold:true, band:bandFor(states[r],'cold-probe'), origin:'cold-probe'});
+
+  // 2) FRONTIER — the rule(s) currently being learned get the bulk of practice.
+  //    Cold start: nothing introduced => introduce the first curriculum rule as the frontier.
+  let frontier = learning.slice();
+  let introducing = null;
+  if(introduced.length===0){ introducing=CURRICULUM[0]; frontier=[CURRICULUM[0]]; }
+
+  // 3) READINESS — introduce the next rule when frontier is stable-enough & under the learn cap
+  if(!introducing){
+    const frontierStable = frontier.length>0 && frontier.every(r=>stableToInterleave(states[r],p));
+    if((frontier.length===0 || frontierStable) && learning.length < p.learnCap){
+      introducing = CURRICULUM.find(r=>!introduced.includes(r));
+    }
+  }
+
+  // budget after cold probes
+  let budget = p.sessionLen - queue.length;
+
+  // reserve readiness reps for a newly introduced rule
+  const readiness=[];
+  if(introducing && introduced.length>0){
+    for(let i=0;i<Math.min(p.readinessReps,budget);i++) readiness.push({rule:introducing, kind:'readiness-probe', cold:false, band:2, origin:'readiness-probe'});
+    budget-=readiness.length;
+  }
+
+  // review reps for fluent rules not already cold-probed
+  const review=[];
+  for(const r of fluentRules){ if(coldOrder.includes(r)) continue;
+    for(let i=0;i<p.reviewRepsPerRule && budget>0;i++){ review.push({rule:r, kind:'review', cold:false, band:bandFor(states[r],'review'), origin:'review'}); budget--; }
+  }
+
+  // frontier practice fills the remaining budget (the bulk / "train what needs work")
+  const practice=[];
+  const frontierRules = introducing && introduced.length===0 ? [introducing] : frontier;
+  if(frontierRules.length){
+    let i=0; while(budget>0){ const r=frontierRules[i%frontierRules.length]; practice.push({rule:r, kind:'frontier', cold:false, band:bandFor(states[r],'frontier'), origin:'practice'}); budget--; i++; }
+  } else if(budget>0 && review.length){
+    // no frontier (everything fluent) — extend review to fill
+    let i=0; while(budget>0){ const base=review[i%review.length]; review.push({...base}); budget--; i++; }
+  }
+
+  // 4) ASSEMBLE — cold probes strictly first; then interleave practice/review/readiness
+  const rest=[]; const pools=[practice, review, readiness]; let idx=0;
+  while(pools.some(x=>x.length)){ const pool=pools[idx%3]; if(pool.length) rest.push(pool.shift()); idx++; }
+  const full=[...queue, ...rest].slice(0, p.sessionLen);
+
+  return {
+    queue: full,
+    summary: { introduced, learning, fluentRules, dueRules, introducing: introducing||null,
+      coldProbes: coldOrder, len: full.length }
+  };
+}
+
+if(typeof module!=='undefined')module.exports={ planSession, stableToInterleave, CURRICULUM, DIR_PARAMS };
+
+});
+
+__define("lightning-retention", function(module, exports, require){
+/* =============================================================================
+   LIGHTNING — RETENTION WIRING  (engine_core stability -> real 'due'; verified)
+
+   engine_core's `stability` IS the half-life in days (recall = 0.5^(elapsed/stability)).
+   We derive it by REPLAYING each rule's cold-recall events (the first free solve of
+   the rule in each session = the true post-gap test) through engine_core.bumpStability,
+   using real inter-session gaps. Stability stays a pure function of the attempts log,
+   preserving the rebuild guarantee, while using engine_core's actual decay math.
+
+   assess() = ruleStats (threshold-free) + derived half-life + classify (verdict).
+   This is the single place the data-dependent decay threshold becomes real; it's the
+   shadow seam — its 'due' predictions get validated by the cold probes the director runs.
+   ============================================================================= */
+
+const EC = require('./engine_core.js');
+const { ruleStats, classify } = require('./lightning-store.js');
+const DAY_MS = 86400000;
+
+/* first cold FREE solve per session for a rule, time-ordered, graded for retention */
+function coldRecallEvents(attempts, rule){
+  const mine = attempts.filter(a=>a.rule===rule && a.mode==='free').slice().sort((x,y)=>x.ts-y.ts);
+  const perSession={}, events=[];
+  for(const a of mine){
+    const c=(perSession[a.sessionId]=(perSession[a.sessionId]||0)+1);
+    if(c!==1) continue;            // only the first same-rule solve of a session is the post-gap cold recall
+    if(a.calibrating) continue;    // calibration doesn't grade retention
+    let g;
+    if(a.outcome==='error') g=0;                                   // lapse
+    else if(a.outcome==='slip') g=1;                               // recalled it, fumbled entry
+    else g=(a.thinkMs!=null && a.gate!=null && a.thinkMs<=a.gate)?2:1; // clean-fast=2, clean-slow=1
+    events.push({ts:a.ts, day:a.ts/DAY_MS, grade:g, outcome:a.outcome});
+  }
+  return events;
+}
+
+/* replay cold recalls through engine_core.bumpStability -> half-life (pure fn of the log) */
+function deriveStability(attempts, rule, cfg){
+  cfg = {growthFast:1.9, ...(cfg||{})};
+  const ev = coldRecallEvents(attempts, rule);
+  const s = {stability:1.0, due:1e9};              // 1e9 => first event treated as "on time"
+  for(const e of ev){ EC.bumpStability(s, e.day, e.grade, cfg); s.due = e.day + s.stability; }
+  return {
+    stabilityDays: s.stability, halfLifeMs: s.stability*DAY_MS,
+    lastRecallTs: ev.length? ev[ev.length-1].ts : null,
+    recalls: ev.length, lastGrade: ev.length? ev[ev.length-1].grade : null
+  };
+}
+
+/* full per-rule assessment: stats + real half-life + verdict */
+function assess(attempts, rule, now, params){
+  now = now ?? Date.now();
+  const stats = ruleStats(attempts, rule, now);
+  const ret = deriveStability(attempts, rule);
+  stats.stabilityDays = ret.stabilityDays;
+  stats.halfLifeMs = ret.halfLifeMs;
+  stats.recalls = ret.recalls;
+  const verdict = classify(stats, {...(params||{}), halfLifeMs: ret.halfLifeMs});  // per-rule half-life drives 'due'
+  return {stats, verdict, retention:ret};
+}
+
+function assessAll(attempts, now, params){
+  const rules=[...new Set(attempts.map(a=>a.rule))];
+  const out={};
+  for(const r of rules) out[r]=assess(attempts, r, now, params);
+  return out;
+}
+
+if(typeof module!=='undefined')module.exports={ coldRecallEvents, deriveStability, assess, assessAll, DAY_MS };
+
+});
+
+__define("lightning-conductor", function(module, exports, require){
+/* =============================================================================
+   LIGHTNING — THE CONDUCTOR  (session runtime; verified in Node)
+
+   The glue that makes the brain run off real data. On start it reads the whole
+   attempt log, assesses it (retention -> real 'due'), plans a session (director),
+   then serves problems one at a time. Each solve is written back to the log with
+   the queue item's origin, so the NEXT session sees it. Pure orchestration: it
+   depends on injected pieces (assess, plan, provideProblem, recordAttempt) and a
+   store adapter — no DOM, no clock of its own. The UI is a thin layer on top;
+   this is the testable core that proves the loop before any pixels exist.
+   ============================================================================= */
+
+const engines   = require('./lightning-engines.js');   // RULE_MATH, genStepsMul, carriesOf
+const EC        = require('./engine_core.js');          // genProblem, gateForKind, DEFAULTS, mulberry32
+const storeLib  = require('./lightning-store.js');      // recordAttempt
+const retention = require('./lightning-retention.js');  // assessAll
+const director  = require('./lightning-director.js');   // planSession
+
+const STEP_GRAD_K = 3;   // clean rule-runs of stepping before a rule graduates to free-speed
+
+/* ---- default problem provider: given (rule, band) -> a concrete problem + gate (ms).
+        The real app can inject a calibrated provider; this reference one is enough to run. ---- */
+function makeProvider(seed){
+  const rng = EC.mulberry32(seed || 12345);
+  return function provideProblem(rule, band){
+    if(rule==='gen'){                                   // binary: general multiplication
+      const sizeA = Math.max(2, Math.min(4, band-1)), sizeB = Math.max(2, Math.min(4, band-2||2));
+      const rand=n=>{const lo=Math.pow(10,n-1),hi=Math.pow(10,n)-1;return lo+Math.floor(rng()*(hi-lo+1));};
+      const a=rand(sizeA), b=rand(sizeB), ans=a*b, ansDigits=String(ans).length;
+      const carries=engines.carriesOf(engines.genStepsMul)(a,b);
+      const gateSec=0.6*(2.0+0.9*(sizeA+sizeB)+0.28*ansDigits);
+      return {problem:{a,b}, ans, ansDigits, carries, gate:Math.round(gateSec*1000)};
+    }
+    const mult=engines.RULE_MATH[rule].mult;
+    const level=Math.max(0, Math.min(EC.LEVELS.length-1, band-2));
+    const p=EC.genProblem(mult, level, rng);
+    const gateSec=EC.gateForKind(p,'practice',EC.DEFAULTS);
+    return {problem:{n:p.n}, ans:p.ans, ansDigits:p.ansDigits, carries:p.carries, gate:Math.round(gateSec*1000)};
+  };
+}
+
+/* ---- conductor factory ---- */
+function Conductor(store, deps){
+  deps = deps || {};
+  const assessAll     = deps.assessAll     || retention.assessAll;
+  const planSession   = deps.planSession   || director.planSession;
+  const provideProblem= deps.provideProblem|| makeProvider(deps.seed);
+  const recordAttempt = deps.recordAttempt || storeLib.recordAttempt;
+
+  let queue=[], idx=0, states={}, plan=null, active=false, served=null, written=[], stepClean={};
+
+  // a unary rule is still in its teaching phase until it has STEP_GRAD_K clean stepping runs in the log
+  function needsStepping(rule){
+    return engines.RULE_MATH[rule] && engines.RULE_MATH[rule].shape==='unary' && (stepClean[rule]||0) < STEP_GRAD_K;
+  }
+  // teach a brand-new rule in a focused block (after cold probes), before the interleaved practice
+  function reorderForTeaching(q){
+    const cold  = q.filter(it=>it.cold);
+    const rest  = q.filter(it=>!it.cold);
+    const teach = rest.filter(it=>needsStepping(it.rule));
+    const other = rest.filter(it=>!needsStepping(it.rule));
+    return [...cold, ...teach, ...other];
+  }
+
+  async function start(now){
+    const all = await store.allAttempts();
+    stepClean = {};                                            // graduation state derived from the log
+    for(const a of all){ if(a.mode==='stepping' && a.outcome==='clean') stepClean[a.rule]=(stepClean[a.rule]||0)+1; }
+    states = assessAll(all, now);
+    plan   = planSession(states, deps.params);
+    queue  = reorderForTeaching(plan.queue); idx=0; active=true; written=[];
+    return { plan, states, len: queue.length };
+  }
+  function current(){
+    if(!active || idx>=queue.length) return null;
+    const item = queue[idx];
+    const stepping = needsStepping(item.rule);
+    const band = stepping ? 2 : item.band;                     // teaching uses simple numbers
+    const prob = provideProblem(item.rule, band);
+    let steps=null, ansStr=String(prob.ans);
+    if(stepping){ const g=engines.RULE_MATH[item.rule].genSteps(prob.problem.n); steps=g.steps; ansStr=g.ansStr; }
+    served = { ...item, mode: stepping?'stepping':'free', band, ...prob, steps, ansStr };
+    return served;
+  }
+  async function submit(result, now){
+    if(!active || idx>=queue.length) throw new Error('no active problem to submit');
+    const item = queue[idx];
+    const mode = (served && served.mode) || (needsStepping(item.rule)?'stepping':'free');
+    const prob = served || provideProblem(item.rule, item.band);
+    let attempt;
+    if(mode==='stepping'){
+      attempt = await recordAttempt(store, {
+        rule: item.rule, mode: 'stepping',
+        problem: result.problem || prob.problem,
+        answerDigits: result.ansDigits ?? prob.ansDigits, carries: result.carries ?? prob.carries,
+        outcome: result.outcome,                                     // 'clean' (rule-run completed) | 'error'
+        totalMs: result.stepMs ?? result.totalMs ?? null, thinkMs: null, entryMs: null, gate: null,
+        calibrating: false, origin: 'teach', ruleVersion: 1, selfReport: null
+      }, now);
+      if(result.outcome==='clean') stepClean[item.rule] = (stepClean[item.rule]||0) + 1;   // graduate toward free
+    } else {
+      attempt = await recordAttempt(store, {
+        rule: item.rule, mode: 'free',
+        problem: result.problem || prob.problem,
+        answerDigits: result.ansDigits ?? prob.ansDigits, carries: result.carries ?? prob.carries,
+        outcome: result.outcome,
+        totalMs: result.totalMs, thinkMs: result.thinkMs, entryMs: result.entryMs,
+        gate: result.gate ?? prob.gate, calibrating: !!result.calibrating,
+        origin: item.origin, ruleVersion: 1, selfReport: result.selfReport ?? null
+      }, now);
+    }
+    written.push({...attempt, _mode:mode}); idx++; served=null;
+    const done = idx>=queue.length;
+    if(done) active=false;
+    return { done, mode, index: idx, total: queue.length, next: done?null:current() };
+  }
+  function summary(){
+    const byRule={}, byKind={};
+    for(let i=0;i<written.length;i++){const a=written[i], k=queue[i]?queue[i].kind:'?';
+      byRule[a.rule]=(byRule[a.rule]||0)+1; byKind[k]=(byKind[k]||0)+1;}
+    return { solved: written.length, planned: queue.length, byRule, byKind, introduced: plan&&plan.summary.introducing };
+  }
+  return { start, current, submit, summary, _state:()=>({idx,active,queueLen:queue.length}) };
+}
+
+if(typeof module!=='undefined')module.exports={ Conductor, makeProvider };
+
+});
+
+  // public API on the global (browser: window.Lightning)
+  var Conductor = require('./lightning-conductor.js');
+  var IDB       = require('./lightning-idb.js');
+  var store     = require('./lightning-store.js');
+  var retention = require('./lightning-retention.js');
+  var director  = require('./lightning-director.js');
+  var engines   = require('./lightning-engines.js');
+  root.Lightning = {
+    Conductor: Conductor.Conductor, makeProvider: Conductor.makeProvider,
+    IndexedDBStore: IDB.IndexedDBStore, InMemoryStore: store.InMemoryStore,
+    recordAttempt: store.recordAttempt, ruleStats: store.ruleStats, classify: store.classify,
+    assess: retention.assess, assessAll: retention.assessAll,
+    planSession: director.planSession, CURRICULUM: director.CURRICULUM,
+    RULE_MATH: engines.RULE_MATH, selfTest: engines.selfTest
+  };
+  if(typeof module!=='undefined' && module.exports) module.exports = root.Lightning;
+})(typeof self!=='undefined' ? self : this);
+</script>
+<script>
+"use strict";
+/* ============================================================================
+   VIEW LAYER ONLY. Renders what the conductor hands it; captures input+timing;
+   calls submit(). No loop/scheduling/scoring logic lives here — the bundle owns
+   all of it. (Platform-agnostic guardrail: keep logic out of the view.)
+   ============================================================================ */
+const L = window.Lightning;
+const $ = ()=>document.getElementById('app');
+const BOLT='<svg class="bolt" viewBox="0 0 18 22"><path d="M11 0 2 12h6l-2 10 10-14H9z" fill="#e9a83c"/></svg>';
+const perf = ()=> (typeof performance!=='undefined'&&performance.now)?performance.now():Date.now();
+const nowFn = ()=> (window.__now!=null?window.__now:Date.now());
+const RN = {m2:'×2',m3:'×3',m4:'×4',m5:'×5',m6:'×6',m7:'×7',m8:'×8',m9:'×9',m11:'×11',m12:'×12',gen:'×'};
+
+let store, cond, cur, phase, planInfo;
+let steps, stepIdx, stumbles, stepErr, stepStart;
+let thinkStart, thinkMs, entryStart, entryMs, entered, a1;
+let lastR, sessionDone;
+
+/* ---------- step-label renderers (presentation of the engine's step fields) ---------- */
+function curS(v){return '<span class="cur">'+v+'</span>';}
+function nbrS(v){return '<span class="nbr">'+v+'</span>';}
+function labelLin(s){
+  if(s.curIdx<0) return (s.kn? 'bring down '+nbrS(s.nb) : 'carry')+(s.carryIn?' + '+s.carryIn:'');
+  const t=[]; t.push(s.kc===2?('double '+curS(s.cur)+' (='+2*s.cur+')'):curS(s.cur));
+  if(s.kn && s.nb>0) t.push('neighbour '+nbrS(s.nb));
+  if(s.carryIn) t.push(s.carryIn+' (carry)');
+  return t.join(' + ');
+}
+function labelHalf(s){
+  if(s.curIdx<0) return 'half of '+nbrS(s.nb)+' (='+s.half+')'+(s.carryIn?' + '+s.carryIn:'');
+  const t=[];
+  if(s.k===2) t.push('double '+curS(s.cur)+' (='+2*s.cur+')'); else if(s.k===1) t.push(curS(s.cur));
+  if(s.nb>0) t.push('½ of '+nbrS(s.nb)+' (='+s.half+')');
+  if(s.odd) t.push('5 (odd)');
+  if(s.carryIn) t.push(s.carryIn+' (carry)');
+  return t.join(' + ')||'0';
+}
+function labelSub(s){
+  const t=[];
+  if(s.pos==='units'){ t.push((s.D>1?s.D+'×':'')+'(10 − '+curS(s.cur)+')'+(s.D>1?' (='+s.D*(10-s.cur)+')':'')); if(s.odd)t.push('5 (odd)'); }
+  else if(s.pos==='lead'){ t.push((s.half?'half of ':'')+nbrS(s.nb)+(s.half?' (='+s.nbrTerm+')':'')+' − '+s.L); }
+  else { t.push((s.D>1?s.D+'×':'')+'(9 − '+curS(s.cur)+')'+(s.D>1?' (='+s.D*(9-s.cur)+')':'')); if(s.nb>0)t.push((s.half?'½ of ':'')+nbrS(s.nb)+(s.half?' (='+s.nbrTerm+')':'')); if(s.odd)t.push('5 (odd)'); }
+  if(s.carryIn)t.push(s.carryIn+' (carry)');
+  return t.join(' + ').replace('+ −','−');
+}
+function stepLabel(rule,s){const fam=L.RULE_MATH[rule].family;
+  return fam==='linear'?labelLin(s):fam==='half'?labelHalf(s):fam==='sub'?labelSub(s):('write '+s.digit);}
+function stepErrText(rule,s){return '= '+(s.sum!=null?s.sum:'?')+' → write '+s.digit+(s.carryOut?', carry '+s.carryOut:'');}
+
+/* ---------- helpers ---------- */
+function numHTML(N,curIdx,nbrIdx){return String(N).split('').map((ch,i)=>`<span class="d${i===curIdx?' cur':''}${i===nbrIdx?' nbr':''}">${ch}</span>`).join('');}
+function opNum(cur){ return cur.problem.a!=null ? `${cur.problem.a}<span class="x">×</span>${cur.problem.b}` : `${cur.problem.n}<span class="x">×</span>${L.RULE_MATH[cur.rule].mult}`; }
+function slotsLR(len,arr){let s='<div class="slots">';for(let i=0;i<len;i++){const has=i<arr.length;s+=`<div class="slot ${has?'filled':''} ${arr.length===i?'active':''}">${has?arr[i]:''}</div>`;}return s+'</div>';}
+function slotsRL(len,fmap){let s='<div class="slots">';for(let i=0;i<len;i++){const pos=len-1-i;const has=fmap[pos]!=null;s+=`<div class="slot ${has?'filled':''} ${fmap.__active===pos?'active':''}">${has?fmap[pos]:''}</div>`;}return s+'</div>';}
+function dots(){ if(['loading','plan','done','error'].includes(phase)) return '';
+  const total=cond._state().queueLen, idx=cond._state().idx; let h='<div class="dots">';
+  for(let i=0;i<total;i++)h+=`<i class="${i<idx?'done':i===idx?'cur':''}"></i>`; return h+'</div>'; }
+function topbar(){ let right='';
+  if(cur && !['loading','plan','done','error'].includes(phase)){
+    right = cur.mode==='stepping'
+      ? `<span class="pill learn">learning ${RN[cur.rule]}</span>`
+      : `<span class="pill">${RN[cur.rule]}</span>`; }
+  return `<div class="top">${BOLT}<b>Lightning</b>${right?'<span class="pill lvl" style="margin-left:auto">'+right+'</span>':''}</div>`; }
+
+/* ---------- lifecycle ---------- */
+async function init(){
+  try{
+    phase='loading'; render();
+    store = await L.IndexedDBStore({name:'lightning'});
+    cond  = L.Conductor(store,{seed: (Math.random()*1e9)|0});
+    const r = await cond.start(nowFn());
+    const _all = await store.allAttempts();
+    planInfo = { len:r.len, summary:r.plan.summary, states:r.states,
+      dbCount:_all.length, origin:(typeof location!=='undefined'&&location.origin)?location.origin:'(unknown)' };
+    phase='plan'; render();
+  }catch(e){ phase='error'; renderError(e); }
+}
+function begin(){ serve(); }
+function serve(){
+  cur = cond.current();
+  if(!cur){ phase='done'; render(); return; }
+  if(cur.mode==='stepping'){ steps=cur.steps; stepIdx=0; stumbles=0; stepErr=''; stepStart=perf(); phase='step'; }
+  else { thinkStart=perf(); thinkMs=0; entered=[]; phase='compute'; }
+  render();
+}
+/* stepping */
+function pressStep(d){ const s=steps[stepIdx];
+  if(+d===s.digit){ stepErr=''; stepIdx++; if(stepIdx>=steps.length){ phase='stepdone'; } render(); }
+  else { stumbles++; stepErr=stepErrText(cur.rule,s); render(); } }
+async function afterStep(){ const outcome=stumbles<=1?'clean':'error';
+  const r=await cond.submit({outcome,problem:cur.problem,ansDigits:cur.ansDigits,carries:cur.carries,stepMs:Math.round(perf()-stepStart)}, nowFn());
+  sessionDone=r.done; advance(); }
+/* free */
+function gotIt(){ thinkMs=perf()-thinkStart; entryStart=perf(); entered=[]; phase='enter'; render(); }
+function press(d){ if(phase!=='enter'&&phase!=='retry')return;
+  if(entered.length<cur.ansDigits){ entered.push(d);
+    if(entered.length===cur.ansDigits){ phase==='enter'?evalFirst():evalRetry(); } else render(); } }
+function backspace(){ if(phase!=='enter'&&phase!=='retry')return; entered.pop(); render(); }
+function evalFirst(){ entryMs=perf()-entryStart; const got=entered.join('');
+  if(got===cur.ansStr){ finishFree('clean',got); } else { a1={got,total:thinkMs+entryMs}; entered=[]; phase='retry'; render(); } }
+function evalRetry(){ const got=entered.join(''); finishFree(got===cur.ansStr?'slip':'error',got); }
+function missedIt(){ finishFree('error', a1?a1.got:''); }
+async function finishFree(outcome,got){
+  const total = outcome==='clean' ? (thinkMs+entryMs) : (a1?a1.total:thinkMs+entryMs);
+  const r = await cond.submit({outcome,problem:cur.problem,ansDigits:cur.ansDigits,carries:cur.carries,gate:cur.gate,
+    thinkMs:Math.round(thinkMs), entryMs:Math.round(outcome==='clean'?entryMs:0), totalMs:Math.round(total)}, nowFn());
+  lastR={outcome, total:(total/1000), think:(thinkMs/1000), entry:(entryMs/1000), gate:cur.gate, ans:cur.ansStr, got, band:cur.band, calibrating:false};
+  sessionDone=r.done; phase='result'; render();
+}
+function advance(){ if(sessionDone){ phase='done'; render(); } else serve(); }
+
+/* ---------- render ---------- */
+function render(){
+  if(phase==='loading'){ $().innerHTML=topbar()+'<div class="stage"><div class="card"><h1>Loading…</h1><p>Reading your history.</p></div></div>'; return; }
+  if(phase==='plan')   return renderPlan();
+  if(phase==='done')   return renderDone();
+  let stage='';
+  if(phase==='step'){ const s=steps[stepIdx]; const fmap={__active:s.j}; for(let k=0;k<stepIdx;k++)fmap[steps[k].j]=steps[k].digit;
+    stage=`<div class="num">${numHTML(cur.problem.n,s.curIdx,s.nbrIdx)}<span class="x">×</span>${L.RULE_MATH[cur.rule].mult}</div>
+      <div class="steplabel">${stepLabel(cur.rule,s)}</div>
+      ${slotsRL(cur.ansStr.length,fmap)}<div class="correct">${stepErr}</div>`;
+  } else if(phase==='stepdone'){
+    stage=`<div class="result"><div class="verdict ok">${cur.problem.n} × ${L.RULE_MATH[cur.rule].mult} = ${cur.ans}</div>
+      <div class="split">${stumbles<=1?'clean rule-run':stumbles+' slips'}</div>
+      <div class="gateline">learning ${RN[cur.rule]} — the method, step by step</div></div>`;
+  } else if(phase==='compute'){
+    stage=`<div class="num">${opNum(cur)}</div><div class="hintline">work it out, then tap</div>`;
+  } else if(phase==='enter'){
+    stage=`<div class="num" style="font-size:min(10vw,38px);opacity:.65">${opNum(cur)}</div>
+      <div class="hint">type the answer — left to right</div>${slotsLR(cur.ansDigits,entered)}`;
+  } else if(phase==='retry'){
+    stage=`<div class="num" style="font-size:min(10vw,38px);opacity:.5">${opNum(cur)}</div>
+      <div class="correct" style="color:var(--rose)">not quite — re-enter, or “I missed it”</div>
+      ${slotsLR(cur.ansDigits,entered)}<div class="hintline">clock’s stopped — a typo here is just discarded</div>`;
+  } else if(phase==='result'){ const r=lastR;
+    if(r.outcome==='clean'){
+      stage=`<div class="result"><div class="verdict ok">Correct</div>
+        ${r.gate&&r.total*1000<=r.gate?'<div class="pr">✓ under target</div>':''}
+        <div class="bigtime">${r.total.toFixed(2)}s</div>
+        <div class="split">thought <b>${r.think.toFixed(2)}s</b> · typed <b>${r.entry.toFixed(2)}s</b></div>
+        <div class="gateline">target ≤ ${(r.gate/1000).toFixed(2)}s</div></div>`;
+    } else if(r.outcome==='slip'){
+      stage=`<div class="result"><div class="verdict slip">Correct ✓</div><div class="subtle">caught a slip — not timed, so your speed stays honest.</div></div>`;
+    } else {
+      stage=`<div class="result"><div class="verdict no">Missed</div><div class="ca">${cur.problem.n!=null?cur.problem.n:cur.problem.a} × ${cur.problem.b!=null?cur.problem.b:L.RULE_MATH[cur.rule].mult} = ${r.ans}</div>
+        <div class="subtle">your answer: ${r.got} · counts as a miss</div></div>`;
+    }
+  }
+  $().innerHTML = topbar()+dots()+`<div class="stage">${stage}</div>`+foot();
+}
+function foot(){
+  if(phase==='step')  return pad('pressStep',false);
+  if(phase==='enter') return pad('press',true);
+  if(phase==='retry') return pad('press',true)+`<button class="btn ghost" onclick="missedIt()">I actually missed it</button>`;
+  if(phase==='stepdone') return `<div class="foot"><button class="btn" onclick="afterStep()">Next →</button></div>`;
+  if(phase==='compute')  return `<div class="foot"><button class="btn" onclick="gotIt()">I’ve got it →</button></div>`;
+  if(phase==='result')   return `<div class="foot"><button class="btn" onclick="advance()">Next →</button></div>`;
+  return '';
+}
+function pad(name,withBack){ return `<div class="foot"><div class="pad">
+  ${[1,2,3,4,5,6,7,8,9].map(d=>`<button class="key" onclick="${name}('${d}')">${d}</button>`).join('')}
+  ${withBack?'<button class="key fn" onclick="backspace()">⌫</button>':'<button class="key fn" style="visibility:hidden">.</button>'}
+  <button class="key" onclick="${name}('0')">0</button><button class="key fn" style="visibility:hidden">.</button></div></div>`; }
+
+function renderPlan(){ const s=planInfo.summary; const q=(cond&&cond._state)?null:null;
+  const intro = s.introducing ? `Introducing <b>${RN[s.introducing]}</b> today — you’ll learn it step by step first.` : '';
+  const rows = summarizeQueue();
+  $().innerHTML = `<div class="top">${BOLT}<b>Lightning</b></div><div class="stage"><div class="card">
+    <h1 class="big">Today’s session</h1>
+    <p>${planInfo.len} problems, chosen from your history. ${intro}</p>
+    <div class="plan">${rows}</div>
+    <div class="env">origin: <b>${planInfo.origin}</b><br>stored history: <b>${planInfo.dbCount}</b> attempts in this database</div>
+  </div></div><div class="foot"><button class="btn" onclick="begin()">Begin →</button></div>`;
+}
+function summarizeQueue(){
+  const st=planInfo.summary;
+  const parts=[];
+  if(st.coldProbes&&st.coldProbes.length) parts.push(['cold check', st.coldProbes.map(r=>RN[r]).join(', '), 'resurface']);
+  if(st.learning&&st.learning.length) parts.push(['practice', st.learning.map(r=>RN[r]).join(', '), 'frontier']);
+  if(st.introducing) parts.push(['learn', RN[st.introducing], 'new rule']);
+  if(st.fluentRules&&st.fluentRules.length) parts.push(['review', st.fluentRules.map(r=>RN[r]).join(', '), 'keep sharp']);
+  if(!parts.length) parts.push(['practice','×11','start here']);
+  return parts.map(([k,r,note])=>`<div class="prow"><span><span class="r">${r}</span> <span class="k">· ${note}</span></span><span class="k">${k}</span></div>`).join('');
+}
+function renderDone(){ const sm=cond.summary();
+  const rules=Object.entries(sm.byRule).map(([r,n])=>`${RN[r]}×${n}`).join('  ');
+  $().innerHTML = `<div class="top">${BOLT}<b>Lightning</b></div><div class="stage"><div class="card">
+    <h1 class="big">Session complete ⚡</h1>
+    <p>You worked through <b>${sm.solved}</b> problems. The next session will build on what you just did.</p>
+    <div class="statline"><div class="s"><b class="mono">${sm.solved}</b><span>solved</span></div>
+      <div class="s"><b class="mono">${Object.keys(sm.byRule).length}</b><span>rules</span></div>
+      <div class="s"><b class="mono">${sm.byKind.frontier||0}</b><span>practice</span></div></div>
+    <p style="color:var(--faint);font-size:13px">${rules}</p>
+  </div></div><div class="foot"><button class="btn" onclick="init()">Done</button></div>`;
+}
+function renderError(e){ $().innerHTML=`<div class="top">${BOLT}<b>Lightning</b></div><div class="stage"><div class="card">
+  <h1>Storage unavailable</h1><p class="err">${(e&&e.message)||e}</p>
+  <p>If you’re in Private Browsing, switch to a normal Safari tab.</p></div></div>`; }
+
+Object.assign(window,{init,begin,serve,pressStep,afterStep,gotIt,press,backspace,missedIt,advance});
+if(document.getElementById('app')) init();
+</script>
+</body>
+</html>
